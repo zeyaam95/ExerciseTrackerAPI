@@ -1,6 +1,6 @@
-#ExerciseTracker API
+# ExerciseTracker API
 
-##Overview
+## Overview
 The Exercise Tracker API is a rudimentary API for keeping track of your workouts. 
 The default measurements are in metric system and the dates are recorded in EST (GMT -5) timezone.
 There are three main entities: User, Workout and Exercise. A User has none or many Workouts 
@@ -16,8 +16,9 @@ We can fetch all the workouts and exercises related to a given user and filter t
 ## User API
 ### Get all Users
 **GET** ```localhost:8080/user```
-### Add User
+### Add or Update User
 **POST** ```localhost:8080/user```  
+**PUT** ```localhost:8080/user```  
 _Sample request body:_
 ```json
 {
@@ -36,8 +37,9 @@ _Sample request body:_
 ## Workout API
 ### Get all Workouts
 **GET** ```localhost:8080/workout```
-### Add Workout
+### Add or Update Workout
 **POST** ```localhost:8080/workout```  
+**PUT** ```localhost:8080/workout```  
 _Sample request body:_
 ```json
 {
@@ -77,8 +79,9 @@ _Sample request body:_
 ##Exercise API
 ### Get all Exercises
 **GET** ```localhost:8080/exercise```
-### Add Exercise
+### Add or Update Exercise
 **POST** ```localhost:8080/exercise```  
+**PUT** ```localhost:8080/exercise```  
 _Sample request body:_
 ```json
 {
