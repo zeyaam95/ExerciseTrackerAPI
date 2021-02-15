@@ -1,17 +1,13 @@
 package com.exercise.api.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +16,8 @@ public class Exercise {
     private String duration;
     private String name;
     private String type;
+    private String notes;
     private int reps;
     private int sets;
-    private String notes;
+
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/exercise")
 public class ExerciseController {
     @Autowired
     ExerciseService exerciseService;
@@ -18,30 +19,30 @@ public class ExerciseController {
     @Autowired
     WorkoutService workoutService;
 
-    @GetMapping("/exercise")
-    private List<Exercise> getAllExercises() {
+    @GetMapping()
+    public List<Exercise> getAllExercises() {
         return exerciseService.getAllExercises();
     }
 
-    @GetMapping("/exercise/{id}")
-    private Exercise getExercise(@PathVariable("id") long id) {
+    @GetMapping("{id}")
+    public Exercise getExercise(@PathVariable("id") long id) {
         return exerciseService.getExerciseById(id);
     }
 
-    @GetMapping("/exercise/workout/{workoutId}")
-    private List<Exercise> getExerciseByWorkout(@PathVariable("workoutId") long workoutId) {
+    @GetMapping("workout/{workoutId}")
+    public List<Exercise> getExerciseByWorkout(@PathVariable("workoutId") long workoutId) {
         return exerciseService.getExerciseByWorkoutId(workoutId);
     }
 
-    @GetMapping("/exercise/workout/{workoutId}/{type}")
-    private List<Exercise> getExerciseByWorkout(
+    @GetMapping("workout/{workoutId}/{type}")
+    public List<Exercise> getExerciseByWorkout(
             @PathVariable("workoutId") long workoutId,
             @PathVariable("type") String type) {
         return exerciseService.getExerciseByWorkoutIdAndType(workoutId, type);
     }
 
-    @GetMapping("/exercise/user/{userId}")
-    private List<Exercise> getAllExercisesByUserId(@PathVariable("userId") long userId) {
+    @GetMapping("user/{userId}")
+    public List<Exercise> getAllExercisesByUserId(@PathVariable("userId") long userId) {
         List<Exercise> allExercises = new ArrayList<>();
         List<Workout> userWorkouts = workoutService.getWorkoutsByUserId(userId);
         for (Workout workout : userWorkouts) {
@@ -50,8 +51,8 @@ public class ExerciseController {
         return allExercises;
     }
 
-    @GetMapping("/exercise/user/{userId}/{type}")
-    private List<Exercise> getAllExercisesByUserId(
+    @GetMapping("user/{userId}/{type}")
+    public List<Exercise> getAllExercisesByUserId(
             @PathVariable("userId") long userId,
             @PathVariable("type") String type) {
         List<Exercise> allExercises = new ArrayList<>();
@@ -62,13 +63,13 @@ public class ExerciseController {
         return allExercises;
     }
 
-    @DeleteMapping("/exercise/{id}")
-    private void deleteExercise(@PathVariable("id") long id) {
+    @DeleteMapping("{id}")
+    public void deleteExercise(@PathVariable("id") long id) {
         exerciseService.delete(id);
     }
 
-    @PostMapping("/exercise")
-    private long saveExercise(@RequestBody Exercise exercise) {
+    @PostMapping()
+    public long saveExercise(@RequestBody Exercise exercise) {
         exerciseService.saveOrUpdate(exercise);
         return exercise.getExerciseId();
     }
