@@ -19,5 +19,4 @@ public class Exercise {
     private String notes;
     private int reps;
     private int sets;
-
 }

@@ -1,0 +1,41 @@
+@import "./components/dashboard/dashboard.scss";
+@import "./components/registration/registration.scss";
+@import "~bootstrap/scss/bootstrap";
+
+*:focus, 
+.btn:focus, 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+.mr-sm-2:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.Main {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+}
+
+.Dark {
+  background: #333;
+  color: #fff;
+  .Test {
+  }
+}
+
+.Light {
+  background: #fff;
+  color: #333;
+  .Test {
+  }
+}
+
+.btn-flat {
+  background-color: yellow;
+  margin-right: 1vw;
+}
