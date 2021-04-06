@@ -1,0 +1,69 @@
+.workout-summary-strength, .workout-summary-cardio, 
+.workout-summary-calories {
+    font-weight: bold;
+    font-size: 20px;  
+    margin: 5%;
+    padding-top: 5%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
+ }
+
+.workout-summary-strength {
+    grid-area: strength;
+}
+
+.workout-summary-cardio {
+    grid-area: cardio;
+}
+
+.workout-summary-calories {
+    grid-area: calories;
+}
+
+.container-style {
+    height: 35px;
+    width: 85%;
+    border-radius: 6px;
+    margin: 5% auto;
+}
+
+.filler-style {
+    height: 100%;
+    border-radius: inherit;
+}
+
+.label-style {
+    padding: 5px;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.bar-amount {
+    font-weight: normal;
+}
+
+.Dark {
+    .container-style {
+        background-color: #202C3D;
+    }
+    .label-style {
+        color: #202C3D;
+    }
+    .bar-amount {
+        color: #34495e;
+    }
+}
+
+.Light {
+    .container-style {
+        background-color: #f6f9fa;
+    }
+    .label-style {
+        color: #f6f9fa;
+    }
+    .bar-amount {
+        color: #95a5a6;
+    }
+}

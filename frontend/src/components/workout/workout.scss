@@ -1,0 +1,87 @@
+.workout-summary {
+    grid-area: workout;
+    margin: 2%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.workout-grid {
+    height: 390px;
+    display: grid;
+    justify-self: stretch;
+    grid-template-areas: "header"
+                         "stats"
+                         "exercise";
+    grid-template-rows: 13% 42% 45%;
+    grid-template-columns: minmax(0,1fr);
+}
+
+.workout-header {
+    grid-area: header;
+    padding: 1%;
+    font-size: 23px;
+}
+
+.workout-stats {
+    grid-area: stats;
+    padding: 3%;
+    display: grid;
+    grid-template-areas: "a d"
+                          "b e"
+                          "c f";
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 55% 45%;
+    text-align: left;
+    align-items: center;
+}
+
+.Dark {
+    .workout-stats {
+        background-color: #0D1E35;
+    }
+}
+
+.Light {
+    .workout-stats {
+        background-color: #E7EAEB;
+    }
+}
+
+.workout-stats-slot {
+    font-size: 13px;
+}
+
+.workout-stats-key {
+    display: block;
+    float: left;
+    width: 40%;
+    padding-left: 3%;
+}
+
+.workout-stats-value {
+    display: block;
+    float: right;
+    width: 40%;
+}
+
+.workout-exercise {
+    grid-area: exercise;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.workout-exercise-list {
+}
+
+.exercise-list-row {
+    font-size: 12px;
+    height: 4vh;
+    padding: 2%;
+    display: grid;
+    grid-area: "name type dur cal notes set rep";
+    grid-template-columns: repeat(4, minmax(0, 1fr)) 18% 8% 8%;
+}

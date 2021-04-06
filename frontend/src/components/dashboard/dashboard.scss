@@ -1,0 +1,149 @@
+.dashboard {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 700px;
+    width: 50vw;
+    height: 93vh;
+}
+
+.user-info, .user-data {
+    display: flex;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.user-info {
+    min-height: 300px;
+    min-width: 1000px;
+    margin: 4vh 0;
+    display: grid;
+    grid-template-columns: 28% 72%;
+    grid-template-areas: "photo profile";
+}
+
+.profile-pic-wrapper {
+    grid-area: photo;
+    justify-self: stretch;
+}
+
+.profile-pic {
+    margin: 2vh 1.125vw;
+    display: flex;
+    width: 84%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.profile-data-wrapper {
+    width: 100%;
+    display:table-cell;
+    vertical-align: middle;
+    margin-top: 4vh;
+}
+
+.profile-data-row {
+    padding-left: 2vw;
+    display: grid;
+    grid-template-columns: 30% 60%;
+    grid-template-areas: "attribute value";
+    height: 4vh;
+    width: 100%;
+}
+
+.profile-key, .profile-value {
+    font-size: 20px;
+    text-align: left;
+    justify-self: stretch;
+}
+
+.profile-key {
+    grid-area: attribute;
+}
+
+.profile-value {
+    grid-area: value;
+}
+
+.user-data {
+    height: 600px;
+    min-width: 1000px;
+    display: grid;
+    grid-template-columns: 28% 72%;
+    grid-template-areas: "list workout";
+}
+
+.workout-list-wrapper {
+    grid-area: list;
+    display: grid;
+    justify-self: stretch;
+    max-height: 600px;
+    grid-template-areas: "header add delete"
+                         "items items items";
+    grid-template-columns: 70% 15% 15%;
+    grid-template-rows: 50px calc(100% - 50px);
+}
+
+.workout-list-header {
+    padding-top: 3%;
+}
+
+.workout-list-add, .workout-list-delete {
+    color: #fff;
+    height: 50px;
+    font-size: 1.75em;
+}
+
+.workout-list-header {
+    font-size: 23px;
+    font-weight: bold;
+    grid-area: header;
+    height: 50px;
+}
+
+.workout-list-add, .workout-list-delete,
+.workout-list-entry:hover {
+    transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+}
+
+.workout-list-add {
+    background: #1abc9c;
+    grid-area: add;
+}
+
+.workout-list-delete {
+    background: #e74c3c;
+    grid-area: delete;
+}
+
+.workout-list-items {
+    grid-area: items;
+    overflow-y: scroll;
+}
+
+.workout-list-entry {
+    font-size: 15px;
+    text-align: left;
+    padding: 5% 5% 5% 15%;
+}
+
+.workout-list-entry:hover, .workout-list-entry-selected {
+    padding-left: 14%;
+    font-weight: bold;
+    background: #3498db;
+}
+
+.workout-summary-wrapper {
+    grid-area: workout;
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 28% 72%;
+    grid-template-areas: "strength cardio calories"
+                         "workout workout workout";
+}
+
