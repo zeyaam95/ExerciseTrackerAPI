@@ -24,7 +24,7 @@ export function toFeet(n) {
 }
 
 export function convertDate(date) {
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
     var jsDate = new Date(date)
     var day = days[jsDate.getDay()]

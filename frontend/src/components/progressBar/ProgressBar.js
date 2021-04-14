@@ -5,14 +5,13 @@ import './progressbar.scss'
 export default function ProgressBar(props) {
     const { title, amount, total, classname, bgcolor } = props;
     const [ calAmount, setCalAmount ] = useState(0)
-
     let completed = Math.min( 100, (amount*100)/total ).toFixed(0)
 
     useEffect(() => {
         setCalAmount(amount)
     }, props)
 
-    const fillerStyles = {
+    let fillerStyles = {
         width: `${completed}%`,
         backgroundImage: bgcolor,
         textAlign: 'right'

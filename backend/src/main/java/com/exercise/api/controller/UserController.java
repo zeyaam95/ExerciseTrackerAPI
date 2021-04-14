@@ -1,10 +1,14 @@
 package com.exercise.api.controller;
 
 import com.exercise.api.model.User;
+import com.exercise.api.model.UserModel;
 import com.exercise.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.List;
 
 @RestController
@@ -19,17 +23,27 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    private User getActivity(@PathVariable("id") long id) {
-        return userService.getUserById(id);
+    private UserModel getActivity(@PathVariable("id") long id) throws Exception {
+        User targetUser = userService.getUserById(id);
+        LocalDate dob = targetUser.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(dob, currentDate).getYears();
+        UserModel myUser = new UserModel(
+                targetUser.getUserName(),
+                targetUser.getWeight(),
+                targetUser.getHeight(),
+                age,
+                targetUser.getJoinDate());
+        return myUser;
     }
 
     @DeleteMapping("{id}")
-    private void deleteActivity(@PathVariable("id") long id) {
+    private void deleteActivity(@PathVariable("id") long id) throws Exception {
         userService.delete(id);
     }
 
     @PostMapping()
-    private long saveActivity(@RequestBody User user) {
+    private long saveActivity(@RequestBody User user) throws Exception {
         userService.saveOrUpdate(user);
         return user.getUserId();
     }

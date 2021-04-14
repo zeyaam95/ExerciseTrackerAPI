@@ -43,8 +43,8 @@ button:focus,
 .btn-flat {
   background-color: #1abc9c;
   margin-right: 2vw;
-  width: 4vw;
-  min-width: 100px;
+  width: 7vw;
+  min-width: 150px;
   color: #fff;
   font-size: 1.2em;
   font-family: 'Jura', sans-serif;
@@ -86,6 +86,10 @@ button:focus,
     border-right: 1px solid #202C3D;
   }
 
+  .workout-list-entry-edit {
+    border-left: 1px solid #202C3D;
+  }
+
   .workout-list-items, .exercise-list-row {
     border-top: 1px solid #202C3D;
   }
@@ -98,6 +102,10 @@ button:focus,
   .workout-summary-strength, .workout-summary-cardio, 
   .workout-summary-calories, .workout-summary {
     background: #061223;
+  }
+
+  .exercise-list-row {
+    background: #0E1A2B;
   }
 
   .workout-summary-strength {
@@ -131,6 +139,10 @@ button:focus,
     border-right: 1px solid #95a5a6;
   }
 
+  .workout-list-entry-edit {
+    border-left: 1px solid #95a5a6;
+  }
+
   .workout-list-items, .exercise-list-row {
     border-top: 1px solid #95a5a6;
   }
@@ -143,6 +155,10 @@ button:focus,
   .workout-summary-strength, .workout-summary-cardio, 
   .workout-summary-calories, .workout-summary {
     background: #DDE0E1;
+  }
+
+  .exercise-list-row {
+    background: #CED1D2;
   }
 
   .workout-summary-strength {

@@ -25,24 +25,29 @@ public class ExerciseController {
     }
 
     @GetMapping("{id}")
-    public Exercise getExercise(@PathVariable("id") long id) {
-        return exerciseService.getExerciseById(id);
+    public Exercise getExercise(@PathVariable("id") long id) throws Exception {
+        if (id <= 0) {
+            throw new Exception("exerciseId cannot be null");
+        }
+        else {
+            return exerciseService.getExerciseById(id);
+        }
     }
 
     @GetMapping("workout/{workoutId}")
-    public List<Exercise> getExerciseByWorkout(@PathVariable("workoutId") long workoutId) {
+    public List<Exercise> getExerciseByWorkout(@PathVariable("workoutId") long workoutId) throws Exception {
         return exerciseService.getExerciseByWorkoutId(workoutId);
     }
 
     @GetMapping("workout/{workoutId}/{type}")
     public List<Exercise> getExerciseByWorkout(
             @PathVariable("workoutId") long workoutId,
-            @PathVariable("type") String type) {
+            @PathVariable("type") String type) throws Exception {
         return exerciseService.getExerciseByWorkoutIdAndType(workoutId, type);
     }
 
     @GetMapping("user/{userId}")
-    public List<Exercise> getAllExercisesByUserId(@PathVariable("userId") long userId) {
+    public List<Exercise> getAllExercisesByUserId(@PathVariable("userId") long userId) throws Exception {
         List<Exercise> allExercises = new ArrayList<>();
         List<Workout> userWorkouts = workoutService.getWorkoutsByUserId(userId);
         for (Workout workout : userWorkouts) {
@@ -54,7 +59,7 @@ public class ExerciseController {
     @GetMapping("user/{userId}/{type}")
     public List<Exercise> getAllExercisesByUserId(
             @PathVariable("userId") long userId,
-            @PathVariable("type") String type) {
+            @PathVariable("type") String type) throws Exception {
         List<Exercise> allExercises = new ArrayList<>();
         List<Workout> userWorkouts = workoutService.getWorkoutsByUserId(userId);
         for (Workout workout : userWorkouts) {
@@ -64,12 +69,12 @@ public class ExerciseController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteExercise(@PathVariable("id") long id) {
+    public void deleteExercise(@PathVariable("id") long id) throws Exception {
         exerciseService.delete(id);
     }
 
     @PostMapping()
-    public long saveExercise(@RequestBody Exercise exercise) {
+    public long saveExercise(@RequestBody Exercise exercise) throws Exception {
         exerciseService.saveOrUpdate(exercise);
         return exercise.getExerciseId();
     }

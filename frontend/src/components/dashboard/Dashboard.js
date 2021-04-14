@@ -92,18 +92,40 @@ export default function Dashboard(props) {
                             .sort((a,b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0))
                             .map((item, index) => {
                                 let className = "workout-list-entry"
+                                let show = false
                                 if (index === selectedWorkoutIndex) {
                                     className += " workout-list-entry-selected shadow"
+                                    show = true
                                 }
+
+                                let clickFunc = ()=> {
+                                    setWorkout(item)
+                                    workoutContextValue = { workout, setWorkout }
+                                    setSelectedWorkoutIndex(index)
+                                }
+
                                 return (
                                     <div 
                                         className={className}
-                                        onClick={()=>{
-                                            setWorkout(item)
-                                            workoutContextValue = { workout, setWorkout }
-                                            setSelectedWorkoutIndex(index)
-                                            }}>
-                                        {utils.convertDate(item.date)}
+                                        onClick={clickFunc}
+                                    >
+                                        <div className="workout-list-entry-date">
+                                            {utils.convertDate(item.date)}
+                                        </div>
+                                        {(show===true)?
+                                            <div 
+                                                className="workout-list-entry-edit"
+                                                onClick={()=>{
+                                                    
+                                                }}
+                                            >
+                                                Edit
+                                            </div>
+                                            :
+                                            <div>
+                                                
+                                            </div>
+                                        }
                                     </div>
                                 )
                             })

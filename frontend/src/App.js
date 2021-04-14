@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Navbar, Nav, NavItem, NavDropdown, Button, FormControl } from 'react-bootstrap'
+import logo from './assets/logo.png'
 import Form from 'react-bootstrap/Form'
 import Dashboard from './components/dashboard/Dashboard'
 import './App.scss'
 import { ThemeContext, Theme } from './contexts/ThemeContext'
 import { API, USER_DATA_API, USER_PROFILE_API } from './utils/utils'
 import axios from 'axios'
-
-//const API = 'http://localhost:9000/'
-//const USER_DATA_API = `${API}workout/user/1`
-//const USER_PROFILE_API = `${API}user/1`
 
 function App() {
   const [theme, setTheme] = useState(Theme.Dark)
@@ -52,14 +49,17 @@ function App() {
       <ThemeContext.Provider value={value}>
         <Route path='/'>
           <Navbar className="color-nav">
-            <Navbar.Brand href='/' className="navbar-brand">ExerciseTracker</Navbar.Brand>
+            <Navbar.Brand href='/' className="navbar-brand">
+              <img src={logo} width="100px"/> {' '}
+              ExerciseTracker
+            </Navbar.Brand>
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"/>
             <Button 
               variant="flat"
               onClick={() => setTheme(theme === Theme.Dark? Theme.Light:Theme.Dark)}
               >
-                {theme}
+                {`${theme} Mode`}
             </Button>
             
           </Navbar.Collapse>

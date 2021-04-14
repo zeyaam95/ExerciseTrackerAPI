@@ -19,9 +19,24 @@ public class UserService {
         return users;
     }
 
-    public User getUserById(long id) { return userRepository.findById(id).get();}
+    public User getUserById(long id) throws Exception {
+        if (id < 0) {
+            throw new Exception("userId cannot be negative");
+        }
+        return userRepository.findById(id).get();
+    }
 
-    public void saveOrUpdate(User user) { userRepository.save(user); }
+    public void saveOrUpdate(User user) throws Exception {
+        if (user.getUserId() < 0) {
+            throw new Exception("userId cannot be negative");
+        }
+        userRepository.save(user);
+    }
 
-    public void delete(long id) { userRepository.deleteById((id)); }
+    public void delete(long id) throws Exception {
+        if (id < 0) {
+            throw new Exception("userId cannot be negative");
+        }
+        userRepository.deleteById((id));
+    }
 }

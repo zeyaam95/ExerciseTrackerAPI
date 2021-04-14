@@ -7,19 +7,14 @@ import { WorkoutContext } from '../../contexts/WorkoutContext'
 import axios from 'axios';
 
 export default function Workout(props) {
-    const [ showWorkout, setShowWorkout ] = useState(false)
-    const [workoutStats, setWorkoutStats] = useState(utils.WORKOUT_STATS_DEFAULT)
+    const [ workoutStats, setWorkoutStats] = useState(utils.WORKOUT_STATS_DEFAULT)
     const workout = useContext(WorkoutContext)
 
     useEffect(() => {
-        if (workout.workout.exercises) {
-            setShowWorkout(true)
-        }
         setWorkoutStats(props.workoutStats)
     }, [WorkoutContext.Consumer, props])
 
     let ExerciseTemplate = (props) => {
-        console.log(workout.workout.exercises)
         let exercises = workout.workout.exercises.map( (exercise) => {
             let pluralCheck = (item) => (item > 1)? "s":""
             let typeClass = (exercise.type === "Strength")? {color: '#9b59b6'} : {color: '#f39c12'}
@@ -43,14 +38,18 @@ export default function Workout(props) {
     }
     
     let WorkoutTemplate = (props) => {
-        let properties = {..._.pick(workout.workout,['totalDuration', 'date', 'numExercises']), ...utils.getWorkoutStats([workout.workout])}
-        let workoutStats = {
-            "Date": properties.date,
-            "Strength Calories": properties.Strength,
-            "Total Duration": properties.totalDuration,
-            "Cardio Calories": properties.Cardio,
-            "Number of Exercises": properties.numExercises,
-            "Total Calories": properties.Calories
+        let properties = {}
+        let workoutStats = {}
+        if (workout.workout.exercises !== undefined) {
+            properties = {..._.pick(workout.workout,['totalDuration', 'date', 'numExercises']), ...utils.getWorkoutStats([workout.workout])}
+            workoutStats = {
+                "Date": properties.date,
+                "Strength Calories": properties.Strength,
+                "Total Duration": properties.totalDuration,
+                "Cardio Calories": properties.Cardio,
+                "Number of Exercises": properties.numExercises,
+                "Total Calories": properties.Calories
+            }
         }
         
         return (
@@ -74,15 +73,13 @@ export default function Workout(props) {
         )
     }
     
-    //console.log("Context: ", workout)
     return (
         <div className="workout-summary">
-        { (showWorkout === true)? 
+        { (workout.workout.exercises !== undefined)? 
              <WorkoutTemplate/>
              :
             " "
         }
-            
         </div>
     )
 }
