@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -28,9 +29,11 @@ public class WorkoutController {
     }
 
     @GetMapping("dates/{from}/{to}")
-    @JsonFormat(pattern = "yyyy/MM/dd", timezone = "GMT-05:00")
-    private List<Workout> getBetweenDates(@PathVariable("from") Date from, @PathVariable("to") Date to) throws Exception {
-        return workoutService.getBetweenDates(from, to);
+    private List<Workout> getBetweenDates(@PathVariable("from") String from, @PathVariable("to") String to) throws Exception {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date fromDate = formatter.parse(from);
+        Date toDate = formatter.parse(to);
+        return workoutService.getBetweenDates(fromDate, toDate);
     }
 
     @GetMapping("user/{userId}")

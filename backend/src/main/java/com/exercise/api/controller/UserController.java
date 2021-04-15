@@ -14,16 +14,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     @Autowired
     UserService userService;
 
     @GetMapping()
-    private List<User> getAllActivities() {
+    private List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("{id}")
-    private UserModel getActivity(@PathVariable("id") long id) throws Exception {
+    private UserModel getUser(@PathVariable("id") long id) throws Exception {
         User targetUser = userService.getUserById(id);
         LocalDate dob = targetUser.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate currentDate = LocalDate.now();
@@ -38,12 +39,12 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
-    private void deleteActivity(@PathVariable("id") long id) throws Exception {
+    private void deleteUser(@PathVariable("id") long id) throws Exception {
         userService.delete(id);
     }
 
     @PostMapping()
-    private long saveActivity(@RequestBody User user) throws Exception {
+    private long saveUser(@RequestBody User user) throws Exception {
         userService.saveOrUpdate(user);
         return user.getUserId();
     }
