@@ -26,6 +26,13 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+    public User getUserByUserName(String userName) throws Exception {
+        if (userName.length() == 0) {
+            throw new Exception("userName cannot be an empty string");
+        }
+        return userRepository.findUserByUserName(userName);
+    }
+
     public void saveOrUpdate(User user) throws Exception {
         if (user.getUserId() < 0) {
             throw new Exception("userId cannot be negative");

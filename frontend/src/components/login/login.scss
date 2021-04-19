@@ -1,0 +1,55 @@
+.login-main {
+    grid-area: "login";
+    border-radius: 20px;
+    display: grid;
+    grid-template-areas: "buttons"
+                         "form";
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 90%;
+    margin: 12vh auto;
+    width: 20vw;
+    min-width: 400px;
+}
+
+.form-wrapper {
+    margin: 2vh auto;
+    width: 15vw;
+    min-height: 250px;
+    min-width: 350px;
+}
+
+.form-button-wrapper {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: block;
+    height: 5vh;
+    font-size: 20px;
+}
+
+.form-button-login {
+    border-top-left-radius: 20px;
+    display: block;
+    float: left;
+    width: 50%;
+    height: 5vh;
+}
+
+.form-button-signup, .form-button-signup:hover {
+    border-top-right-radius: 20px;
+    display: block;
+    float: right;
+    width: 50%;
+    height: 5vh;
+}
+
+.form-button-padding {
+    padding-top: 1vh;
+}
+
+.form-button-login:hover, .form-button-signup:hover {
+    background-color: #3498db;
+}
+
+.selectedButton {
+    background-color: #3498db;
+}

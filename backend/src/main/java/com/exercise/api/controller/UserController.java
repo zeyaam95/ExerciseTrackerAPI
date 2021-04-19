@@ -38,6 +38,19 @@ public class UserController {
         return myUser;
     }
 
+    @PostMapping("/name/{userName}")
+    private long getByUserName(@PathVariable("userName") String userName, @RequestBody String misc) throws Exception {
+        if (misc.length() < 4) {
+            throw new Exception("Password must be longer than 3 characters");
+        }
+        misc = misc.substring(0, misc.length()-1);
+        User targetUser = userService.getUserByUserName(userName);
+        if (!misc.equals(targetUser.getPassword())) {
+            throw new Exception("Password does not match");
+        }
+        return targetUser.getUserId();
+    }
+
     @DeleteMapping("{id}")
     private void deleteUser(@PathVariable("id") long id) throws Exception {
         userService.delete(id);

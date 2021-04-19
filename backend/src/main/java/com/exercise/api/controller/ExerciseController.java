@@ -26,12 +26,7 @@ public class ExerciseController {
 
     @GetMapping("{id}")
     public Exercise getExercise(@PathVariable("id") long id) throws Exception {
-        if (id <= 0) {
-            throw new Exception("exerciseId cannot be null");
-        }
-        else {
-            return exerciseService.getExerciseById(id);
-        }
+        return exerciseService.getExerciseById(id);
     }
 
     @GetMapping("workout/{workoutId}")

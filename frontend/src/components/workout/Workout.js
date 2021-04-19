@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import Donut from '../donutChart/Donut'
 import _ from 'lodash'
 import * as utils from '../../utils/utils'
 import './workout.scss';

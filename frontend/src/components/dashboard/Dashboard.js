@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {useHistory} from 'react-router-dom';
 import ProgressBar from '../progressBar/ProgressBar'
 import Workout from '../workout/Workout'
 import * as utils from '../../utils/utils'
@@ -8,6 +9,7 @@ import { WorkoutContext } from '../../contexts/WorkoutContext'
 import axios from 'axios'
 
 export default function Dashboard(props) {
+    const history = useHistory();
     const [userProfile, setProfile] = useState(utils.USER_PROFILE_DEFAULT)
     const [workoutStats, setWorkoutStats] = useState(utils.WORKOUT_STATS_DEFAULT)
     const [selectedWorkoutIndex, setSelectedWorkoutIndex] = useState()
@@ -15,27 +17,47 @@ export default function Dashboard(props) {
     const [workout, setWorkout] = useState({})
     let workoutContextValue = { workout, setWorkout }
 
-    useEffect(()=>{
-        let weight = `${props.userProfile.weight} kg | ${(props.userProfile.weight*2.20462).toFixed(0)} lbs`
-        let height = `${props.userProfile.height} cm | ${utils.toFeet(props.userProfile.height)}`
+    async function fetchData() {
+        axios.all([
+          axios.get(utils.USER_DATA_API + localStorage.getItem("userId")),
+          axios.get(utils.USER_PROFILE_API + localStorage.getItem("userId"))
+        ])
+        .then(axios.spread((userDataReturn, userProfileReturn) => {
+            console.log("USER DATA: ", userDataReturn)
+            document.title = userProfileReturn.data.userName
+            console.log(userProfileReturn.data)
+            let userProfile = userProfileReturn.data
+            let userData = userDataReturn.data
+            let weight = `${userProfile.weight} kg | ${(userProfile.weight*2.20462).toFixed(0)} lbs`
+            let height = `${userProfile.height} cm | ${utils.toFeet(userProfile.height)}`
+            console.log("\n\nLOCAL_STORAGE\n\n",localStorage)
+            let newProfile = {
+                "User Name" : userProfile.userName,
+                "Weight": weight,
+                "Height": height,
+                "Age": `${userProfile.age} years old`,
+                "Member Since": utils.convertDate(userProfile.joinDate)
+            }
+            if (userData.length) {
+                setWorkoutStats(utils.getWorkoutStats(userData))
+            }
+            setProfile(()=>newProfile)
+            setWorkoutData(userData)
+            //console.log("Profile Set", workoutData.length, props.userData, props.userData.length, workoutStats, utils.getWorkoutStats(workoutData))
 
-        let newProfile = {
-            "User Name" : props.userProfile.userName,
-            "Weight": weight,
-            "Height": height,
-            "Age": `${props.userProfile.age} years old`,
-            "Member Since": utils.convertDate(props.userProfile.joinDate)
+            console.log("Ending after fetch")
+            return newProfile
+        })).catch(error => console.log(error))
+    }
+
+    useEffect(() => {
+        console.log("LOCAL STORAGE IN DASHBOARD: ", localStorage)
+        if (localStorage.getItem("user") == "") {
+            history.push('/login')
         }
-        if (props.userData.length) {
-            //console.log("LOOP: ", props.userData)
-            setWorkoutStats(utils.getWorkoutStats(props.userData))
-        }
-        setProfile(()=>newProfile)
-        setWorkoutData(props.userData)
-        //console.log("Profile Set", workoutData.length, props.userData, props.userData.length, workoutStats, utils.getWorkoutStats(workoutData))
-        
-        return newProfile
-    }, [props])
+        console.log("\n\n\n", localStorage.getItem("user"))
+        fetchData()
+    }, [])
 
 
     //console.log("RUNNING",props, workoutContextValue)
@@ -136,21 +158,21 @@ export default function Dashboard(props) {
                         <ProgressBar 
                             title="Strength" 
                             amount={workoutStats.Strength}
-                            total={5500}
+                            total={9500}
                             classname="workout-summary-strength" 
                             bgcolor={"linear-gradient(to right, #474787, #8e44ad 55%)"}
                         />
                         <ProgressBar 
                             title="Cardio" 
                             amount={workoutStats.Cardio}
-                            total={1700}
+                            total={2500}
                             classname="workout-summary-cardio" 
                             bgcolor={"linear-gradient(to right, #e74c3c, #f39c12 55%)"}
                         />
                         <ProgressBar 
                             title="Total Calories" 
                             amount={workoutStats.Calories}
-                            total={7200}
+                            total={12000}
                             classname="workout-summary-calories" 
                             bgcolor={"linear-gradient(to right, #006266, #2ecc71 65%)"}
                         />

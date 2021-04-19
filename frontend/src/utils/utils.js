@@ -1,6 +1,7 @@
 export const API = 'http://localhost:9000/'
-export const USER_DATA_API = `${API}workout/user/1`
-export const USER_PROFILE_API = `${API}user/1`
+export const URL = 'http://localhost:3000/'
+export const USER_DATA_API = `${API}workout/user/`
+export const USER_PROFILE_API = `${API}user/`
 
 export const USER_PROFILE_DEFAULT = {
     "User Name" : "",
@@ -21,6 +22,20 @@ export function toFeet(n) {
     var feet = Math.floor(realFeet);
     var inches = Math.round((realFeet - feet) * 12);
     return `${feet} feet ${inches} inches`;
+}
+
+export function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
 }
 
 export function convertDate(date) {

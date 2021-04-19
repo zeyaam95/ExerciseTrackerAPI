@@ -1,5 +1,6 @@
 @import "./components/dashboard/dashboard.scss";
 @import "./components/donutChart/donut.scss";
+@import "./components/login/login.scss";
 @import "./components/registration/registration.scss";
 @import "./components/workout/workout.scss";
 @import "~bootstrap/scss/bootstrap";
@@ -32,6 +33,16 @@ button:focus,
   box-shadow: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .Main {
   text-align: center;
   min-height: 93vh;
@@ -55,6 +66,10 @@ button:focus,
   color: #131F30;
 }
 
+.btn-primary {
+  margin-top: 2vh;
+}
+
 .color-nav {
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 0 20px rgba(0,0,0,0.2);
@@ -75,6 +90,7 @@ button:focus,
 }
 
 .Dark {
+
   background: #22344e;
   color: #BBCBCC;
   .user-info, .user-data {
@@ -99,13 +115,30 @@ button:focus,
     border-bottom: 1px solid #202C3D;
   }
 
+  .form-button-login {
+    border-right: 1px solid #2D394A;
+  }
+
   .workout-summary-strength, .workout-summary-cardio, 
   .workout-summary-calories, .workout-summary {
     background: #061223;
   }
 
+  .login-main {
+    background-color: #1D293A;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+
   .exercise-list-row {
     background: #0E1A2B;
+  }
+
+  .form-button-wrapper {
+    background-color: #0E1A2B;
+    border-bottom: 1px solid #2D394A;
+    color: white;
   }
 
   .workout-summary-strength {
@@ -139,6 +172,10 @@ button:focus,
     border-right: 1px solid #95a5a6;
   }
 
+  .form-button-login {
+    border-right: 1px solid #a5a5a5;
+  }
+
   .workout-list-entry-edit {
     border-left: 1px solid #95a5a6;
   }
@@ -148,13 +185,24 @@ button:focus,
   }
 
   .workout-list-entry, .workout-header,
-  .workout-stats, .exercise-list-row {
+  .workout-stats, .exercise-list-row,
+  .form-button-wrapper {
     border-bottom: 1px solid #95a5a6;
   }
 
   .workout-summary-strength, .workout-summary-cardio, 
-  .workout-summary-calories, .workout-summary {
+  .workout-summary-calories, .workout-summary, .login-main  {
     background: #DDE0E1;
+  }
+
+  .form-button-wrapper {
+    background: #BEC1C2;
+  }
+
+  .login-main {
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.3);
   }
 
   .exercise-list-row {

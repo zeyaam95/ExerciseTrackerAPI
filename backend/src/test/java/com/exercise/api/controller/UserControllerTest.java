@@ -87,6 +87,28 @@ class UserControllerTest {
     }
 
     @Test
+    void testGetUserByUserName() throws Exception {
+        final String uri = "http://localhost:" + port + "/user/name/LarryWheels";
+        when(userService.getUserByUserName(anyString())).thenReturn(this.userOne);
+        JsonNode result = restTemplate.postForObject(uri, "12345=", JsonNode.class);
+        long userId = this.mapper.convertValue(result, long.class);
+        assertEquals(userId, this.userOne.getUserId());
+    }
+
+    @Test
+    void testGetUserByUserName_wrongPasswordLength() throws Exception {
+        final String uri = "http://localhost:" + port + "/user/name/LarryWheels";
+        assertThrows(Exception.class, ()-> restTemplate.postForObject(uri, "12", JsonNode.class));
+    }
+
+    @Test
+    void testGetUserByUserName_wrongPassword() throws Exception {
+        final String uri = "http://localhost:" + port + "/user/name/LarryWheels";
+        when(userService.getUserByUserName(anyString())).thenReturn(this.userOne);
+        assertThrows(Exception.class, ()-> restTemplate.postForObject(uri, "123478687687", JsonNode.class));
+    }
+
+    @Test
     void testDeleteUser() throws Exception {
         final String uri = "http://localhost:" + port + "/user/1";
         ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.DELETE, null, String.class);

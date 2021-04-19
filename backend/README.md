@@ -1,5 +1,6 @@
-# ExerciseTracker API
+# ExerciseTracker REST API
 
+---
 ## Overview
 The Exercise Tracker API is a rudimentary API for keeping track of your workouts. 
 The default measurements are in metric system and the dates are recorded in EST (GMT -5) timezone.
@@ -13,12 +14,13 @@ The API supports creating the User, Workout and Exercise entity as well as delet
 We can fetch all the workouts and exercises related to a given user and filter the exercise by type
 (Cardio or Strength) as well. 
 
+---
 ## User API
 ### Get all Users
-**GET** ```localhost:8080/user```
+**GET** ```localhost:9000/user```
 ### Add or Update User
-**POST** ```localhost:8080/user```  
-**PUT** ```localhost:8080/user```  
+**POST** ```localhost:9000/user```  
+**PUT** ```localhost:9000/user```  
 _Sample request body:_
 ```json
 {
@@ -31,15 +33,15 @@ _Sample request body:_
 }
 ```
 ### Delete User by userId
-**DELETE** ```localhost:8080/user/{userId}```
+**DELETE** ```localhost:9000/user/{userId}```
 
 
 ## Workout API
 ### Get all Workouts
-**GET** ```localhost:8080/workout```
+**GET** ```localhost:9000/workout```
 ### Add or Update Workout
-**POST** ```localhost:8080/workout```  
-**PUT** ```localhost:8080/workout```  
+**POST** ```localhost:9000/workout```  
+**PUT** ```localhost:9000/workout```  
 _Sample request body:_
 ```json
 {
@@ -70,18 +72,18 @@ _Sample request body:_
 }
 ```
 ### Delete Workout by workoutId
-**DELETE** ```localhost:8080/workout/{workoutId}```
+**DELETE** ```localhost:9000/workout/{workoutId}```
 ### Get Workouts by userId
-**GET** ```localhost:8080/workout/user/{userId}```
+**GET** ```localhost:9000/workout/user/{userId}```
 ### Get WorkoutIds by userId
-**GET** ```localhost:8080/workout/user/{userId}/idonly```
+**GET** ```localhost:9000/workout/user/{userId}/idonly```
 
 ##Exercise API
 ### Get all Exercises
-**GET** ```localhost:8080/exercise```
+**GET** ```localhost:9000/exercise```
 ### Add or Update Exercise
-**POST** ```localhost:8080/exercise```  
-**PUT** ```localhost:8080/exercise```  
+**POST** ```localhost:9000/exercise```  
+**PUT** ```localhost:9000/exercise```  
 _Sample request body:_
 ```json
 {
@@ -95,12 +97,25 @@ _Sample request body:_
 }
 ```
 ### Delete Exercise by exerciseId
-**DELETE** ```localhost:8080/exercise/{exerciseId}```
+**DELETE** ```localhost:9000/exercise/{exerciseId}```
 ### Get Exercises by workoutId
-**GET** ```localhost:8080/exercise/workout/{workoutId}```
+**GET** ```localhost:9000/exercise/workout/{workoutId}```
 ### Get Exercises by workoutId and exerciseType
-**GET** ```localhost:8080/exercise/workout/{workoutId}/{exerciseType}```
+**GET** ```localhost:9000/exercise/workout/{workoutId}/{exerciseType}```
 ### Get Exercises by userId
-**GET** ```localhost:8080/exercise/workout/{workoutId}```
+**GET** ```localhost:9000/exercise/workout/{workoutId}```
 ### Get Exercises by userId and exerciseType
-**GET** ```localhost:8080/exercise/workout/{workoutId}/{exerciseType}```
+**GET** ```localhost:9000/exercise/workout/{workoutId}/{exerciseType}```
+
+---
+## Unit testing
+ExerciseTracker is unit tested with 100% method and line coverage for both the service and controller layer.
+
+### Service Layer Unit Test Results
+![Model](docs/serviceCoverage.png)
+
+### Controller Layer Unit Test Results
+![Model](docs/controllerCoverage.png)
+
+---
+

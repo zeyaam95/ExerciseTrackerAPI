@@ -13,10 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.anyLong;
 
 @SpringBootTest
 class UserServiceTest {
@@ -48,6 +47,19 @@ class UserServiceTest {
     @Test
     void getUserById_shouldThrowException() {
         assertThrows(Exception.class, ()-> userService.getUserById(-3));
+    }
+
+    @Test
+    void getUserByUserName() {
+        User user = Mockito.mock(User.class);
+        when(userRepository.findUserByUserName(anyString())).thenReturn(user);
+        User result = userService.userRepository.findUserByUserName("LarryWheels");
+        assertEquals(user, result);
+    }
+
+    @Test
+    void getUserByUserName_shouldThrowException() {
+        assertThrows(Exception.class, ()-> userService.getUserByUserName(""));
     }
 
     @Test

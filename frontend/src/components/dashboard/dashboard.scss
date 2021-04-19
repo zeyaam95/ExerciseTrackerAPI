@@ -105,9 +105,9 @@
 
 .workout-list-add, .workout-list-delete,
 .workout-list-entry:hover, .workout-list-entry-edit:hover {
-    transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
+    transition: background-color .2s ease-in-out;
+    -moz-transition: background-color .2s ease-in-out;
+    -webkit-transition: background-color .2s ease-in-out;
 }
 
 .workout-list-add {
